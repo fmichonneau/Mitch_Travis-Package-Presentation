@@ -1,0 +1,163 @@
+Fun With Packrat!!
+========================================================
+author: Mitch Walters and Travis Guy
+date: 4-12-15
+
+*********
+
+![Packrat](http://www.yeswecoupon.com/wp-content/Images/2013/05/pack-rat.gif)
+
+========================================================
+
+## Why Use Packrat?
+
+
+![Packrat](http://photos.happyherbivore.com/2013/08/packrat111208.gif)
+
+
+
+-------------
+
+
+- Isolation
+- Portability
+- Reproducibility
+
+===========================================================
+
+## Why Use Packrat?
+
+- Have you ever had to use trial-and-error to figure out what R packages you need to install to make someone else’s code work and then been left with those packages globally installed forever???
+
+- Have you ever updated a package to get code in one of your projects to work, only to find that the updated package makes code in another project stop working???
+
+
+========================================================
+
+## How it works
+
+- Packrat stores your package dependencies inside your project directory
+rather than in your personal R library
+- This directory is known as your **private library**
+- When you start an R session in a packrat project directory, R will only
+look for packages in your private library
+- if you install or remove a package, those changes are only made to your
+private library
+
+========================================================
+
+## How it works
+
+### **Restoring:** the process of istalling packages to private libraries from a snapshot
+
+
+- Private libraries don't usually travel well since the contents are compiled for your specific computer, OS, and R version
+- Packrat takes a **snapshot** of your private library, which it saves to your project directory
+- From this, Packrat can re-create the same private library on another computer
+
+
+Installing Packrat
+========================================================
+
+![packrat](http://www.newswise.com/images/uploads/2009/04/03/fullsize/woodrat2juniper.jpg)
+*********
+
+
+> install.packages("packrat")
+
+Set-up
+========================================================
+
+set up the project directory to use Packrat 
+
+> packrat::init:
+
+- do this first thing before typing any other code
+- include a path after init if you are not in your working directory  
+  + ex. packrat::init("~/projects/pollinatordata")
+
+========================================================
+## Congratulations!  You have achieved isolation
+
+![Isolation](http://www.picturesof.net/_images_300/Man_Relaxing_Alone_On_a_Small_Island_Royalty_Free_Clipart_Picture_090304-183107-378042.jpg)
+
+-----------
+
+- You’re no longer in an ordinary R project; you’re in a Packrat project. 
+- You now have your own private package library
+- Any packages you install from inside a packrat project are only available to that project
+- Any packages you install outside of the project are not available to the project
+
+Installing Packages in your Private Library
+========================================================
+
+
+![Library](https://scontent-ord.xx.fbcdn.net/hphotos-xaf1/t31.0-8/338627_542099253028_2087102262_o.jpg)
+
+*****
+
+> install.packages("reshape2")
+
+> install.packages("stringr")
+
+> install.packages("ggplot")
+
+- install a package the way you normally would
+
+Taking a Snapshot of your Private Library
+========================================================
+
+![snapshot](http://pbskids.org/curiousgeorge/games/img/g_icon_snapshot_ovr.gif)
+
+> packrat::snapshot()
+
+
+Restoring Snapshots
+======================================================== 
+### If you want to run your project on a different computer
+- After copying a project to a new computer, simply launch R from your project directory
+- Packrat automates the whole process
+- All of the packages in the snapshot will be installed in your project’s private package library.
+
+Check Status
+========================================================
+> packrat::status()
+
+Restoring Snapshots
+========================================================
+If you delete a package that you realize later you need or if a collaborator makes a change to a snapshot
+
+> packrat::restore()
+
+Cleaning Up
+========================================================
+- Packrat analyzes your code to determine if there are packages that were maybe needed at one time but are no
+longer used
+- You can then tell Packrat to removed these functions
+
+- check the status
+> packrat::status()
+
+- Packrat will tell you which packages are installed but not needed
+- Remove these unneeded packages
+> packrat::clean()
+
+Demonstration 
+========================================================
+Now we will go through a brief interactive demonstration with Packrat
+
+
+
+Slide With Code
+========================================================
+
+```{r, eval=FALSE}
+summary(cars)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```
